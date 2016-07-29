@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "plugins": [
+    "filenames"
+  ],
+  "ecmaFeatures": {
+    "destructuring": true,
+    "restParams": true,
+    "experimentalObjectRestSpread": true
+  },
+  "rules": {
+    "prefer-arrow-callback": 0,
+    "no-console": 0,
+    "comma-dangle": 0,
+    "no-multiple-empty-lines": [2, {"max": 2}],
+    "no-unused-vars": [1, { "args": "after-used" }],
+    "no-underscore-dangle": [0],
+    "prefer-const": 0,
+    "func-names": 1,
+    "no-use-before-define": [2, "nofunc"],
+    "arrow-body-style": 0,
+    "no-nested-ternary": 0,
+    "filenames/match-regex": [2, "^([a-z][-]?)+[a-z]+$"],
+    "object-curly-spacing": [1, "always"],
+    "prefer-template": 0,
+    "spaced-comment": 0
+  }
+}
