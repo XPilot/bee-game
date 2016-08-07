@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "settings": {
     "import/resolver": "webpack"
   },
@@ -13,6 +13,8 @@
     "experimentalObjectRestSpread": true
   },
   "rules": {
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
     "prefer-arrow-callback": 0,
     "no-console": 0,
     "comma-dangle": 0,
@@ -24,7 +26,6 @@
     "no-use-before-define": [2, "nofunc"],
     "arrow-body-style": 0,
     "no-nested-ternary": 0,
-    "filenames/match-regex": [2, "^([a-z][-]?)+[a-z]+$"],
     "object-curly-spacing": [1, "always"],
     "prefer-template": 0,
     "spaced-comment": 0
