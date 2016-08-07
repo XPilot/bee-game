@@ -1,0 +1,109 @@
+/* Font utils to make less headache for me */
+@import './breakpoints.scss';
+
+// Util function
+@function strip-unit($n) {
+  @if type-of($n) == 'number' and not unitless($n) {
+    @return $n / ($n * 0 + 1);
+  }
+  @return $n;
+}
+
+@mixin font-size($size: 1px) {
+  $unitlessSize: strip-unit($size);
+
+  font-size: $unitlessSize + px;
+  font-size: ($unitlessSize / 10) + rem;
+}
+
+@mixin line-height($size: 1) {
+  $unitlessSize: strip-unit($size);
+
+  line-height: $unitlessSize + px;
+  line-height: ($unitlessSize / 10) + rem;
+}
+
+@mixin font-line-size($font-size, $line-height){
+  @include font-size($font-size);
+  @include line-height($line-height);
+}
+
+/* Transition animation util */
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+  @keyframes $animationName {
+    @content;
+  }
+}
+
+@mixin transition($property) {
+  transition: $property $aHoverTransitionTime $aHoverTransitionFunction;
+}
+
+/* Responsive mixins to score high with the recruiter */
+@mixin from-xsmall {
+  @include responsive($mq-extra-small) {
+    @content;
+  }
+}
+
+@mixin small {
+  @include responsive($mq-extra-small, $mq-small) {
+    @content;
+  }
+}
+
+@mixin from-small {
+  @include responsive($mq-small) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @include responsive($mq-small, $mq-medium) {
+    @content;
+  }
+}
+
+@mixin from-medium {
+  @include responsive($mq-medium) {
+    @content;
+  }
+}
+
+@mixin large {
+  @include responsive($mq-medium, $mq-large) {
+    @content;
+  }
+}
+
+@mixin from-large {
+  @include responsive($mq-large) {
+    @content;
+  }
+}
+
+@mixin responsive($minSize:"", $maxSize:"") {
+  @if $minSize != "" and $maxSize != "" {
+    @media only screen and (min-width: #{$minSize}) and (max-width: #{$maxSize}) {
+      @content;
+    }
+  } @else if $minSize {
+    @media only screen and (min-width: #{$minSize}) {
+      @content;
+    }
+  }
+}
