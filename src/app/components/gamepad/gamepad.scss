@@ -1,7 +1,7 @@
 @import '~style/mixins.scss';
 
 .GamePad {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 2;
@@ -27,8 +27,22 @@
   margin: 0;
   padding: 0;
 
-  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+
   background: blue;
   @include font-line-size(0, 0);
-  
+
+  &:nth-child(5n){
+    border-right: none;
+  }
+
+  &:nth-last-child(-n+5){
+    border-bottom: none;
+  }
+}
+
+.creature {
+  position: absolute;
+  z-index: 3;
 }
