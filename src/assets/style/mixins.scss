@@ -40,11 +40,11 @@
             $animations: #{$animations + ", "};
         }
     }
-    animation:         $animations;
+    animation: $animations;
 }
 
 @mixin keyframes($animationName) {
-  @keyframes $animationName {
+  @keyframes #{$animationName} {
     @content;
   }
 }
