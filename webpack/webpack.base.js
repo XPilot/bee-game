@@ -35,9 +35,8 @@ module.exports = {
         loader: 'style!css!postcss'
       },
       {
-        test: /\.(ttf|eot|svg|woff2?)$/,
-        loader: 'file?limit=100000&name=[name].[ext]',
-        include: /font/
+        test: /\.png$/,
+        loader: 'file-loader'
       },
       {
         test: /\.svg$/,
@@ -59,6 +58,7 @@ module.exports = {
       components: path.resolve(__dirname, '../src/app/components'),
       containers: path.resolve(__dirname, '../src/app/containers'),
       decorators: path.resolve(__dirname, '../src/app/decorators'),
+      events: path.resolve(__dirname, '../src/app/events'),
       style: path.resolve(__dirname, '../src/assets/style'),
       images: path.resolve(__dirname, '../src/assets/images')
     },

@@ -7,12 +7,16 @@
   "plugins": [
     "filenames"
   ],
+  "env": {
+    "browser": true,
+  },
   "ecmaFeatures": {
     "destructuring": true,
     "restParams": true,
     "experimentalObjectRestSpread": true
   },
   "rules": {
+    "linebreak-style": 0,
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
     "prefer-arrow-callback": 0,
