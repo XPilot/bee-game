@@ -7,8 +7,14 @@ import './gamepad.scss';
 class GamepadCell {
   constructor() {
     this.displayName = 'GamepadCell';
-    this.type = 'div';
+    this.type = 'a';
     this.classNames = ['GamePadCell'];
+  }
+
+  onClick(ev) {
+    const elem = ev.target;
+
+    console.log(elem.offsetTop, elem.offsetLeft);
   }
 
   render() {
