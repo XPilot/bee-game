@@ -3,7 +3,12 @@ const grid = {
   columns: 5
 };
 
+const bees = 10;
+const wasps = 10;
+
 export default {};
 export {
-  grid
+  grid,
+  bees,
+  wasps,
 };
