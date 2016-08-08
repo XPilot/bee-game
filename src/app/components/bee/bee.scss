@@ -1,0 +1,58 @@
+@import '~style/mixins.scss';
+
+// animations - bee
+@include keyframes(bee-flying) {
+  0% { background-position: 0px 0px; }
+  12% { background-position: 0px -558px; }
+  25% { background-position: 0px -1116px; }
+  37% { background-position: 0px -1674px; }
+  50% { background-position: 0px -2232px; }
+  67% { background-position: 0px -2790px; }
+  75% { background-position: 0px -3348px; }
+  87% { background-position: 0px -3906px; }
+  100% { background-position: 0px 0px; }
+}
+
+@include keyframes(wasp-flying) {
+  0% { background-position: 0px 0px; }
+  12% { background-position: 0px -561px; }
+  25% { background-position: 0px -1122px; }
+  37% { background-position: 0px -1683px; }
+  50% { background-position: 0px -2244px; }
+  67% { background-position: 0px -2805px; }
+  75% { background-position: 0px -3366px; }
+  87% { background-position: 0px -3927px; }
+  100% { background-position: 0px 0px; }
+}
+
+.Bee {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 93.220%;
+
+  background: url('~images/bee.png');
+  background-size: 100%;
+  background-position: 0px 0px;
+
+  @include animation('bee-flying 0.8s step-start infinite')
+}
+
+.Wasp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 93.220%;
+
+  background: url('~images/wasp.png');
+  background-size: 100%;
+  background-position: 0px 0px;
+
+  @include animation('wasp-flying 0.8s step-start infinite')
+}
