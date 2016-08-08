@@ -1,0 +1,22 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:519cfa891d917b025eee3d1a0254bbdc:62a1153420a45e908e15d4e1837744f4:b2b8dd8755d1edd80eb7381fdb223ebc$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(wasp.png);}
+
+.a1 {width:592px; height:555px; background-position: -2px -2px}
+.a2 {width:592px; height:555px; background-position: -2px -559px}
+.a3 {width:592px; height:555px; background-position: -2px -1116px}
+.a4 {width:592px; height:555px; background-position: -2px -1673px}
+.a5 {width:592px; height:555px; background-position: -2px -2230px}
+.a6 {width:592px; height:555px; background-position: -2px -2787px}
+.a7 {width:592px; height:555px; background-position: -2px -3344px}
+.a8 {width:592px; height:555px; background-position: -2px -3901px}
