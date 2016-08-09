@@ -34,12 +34,26 @@ function heavy(Target) {
     ontouchstart: newTarget.onTouchStart || null,
   };
 
+  // extra ref heads
+  Object.keys(newTarget).map(item => {
+    // typeof (item) === 'object'
+    // to be continues
+    return item;
+  });
+
   newTarget.h = (userProps, children) => {
-    return h(
+    const finalProps = Object.assign({}, props, userProps);
+    // Object.keys(finalProps).map(item => {
+    //   console.log(newTarget.hasOwnProperty(item));
+    // });
+
+    newTarget.heavyRenderer = h(
       props['data-type'],
-      Object.assign({}, props, userProps),
+      finalProps,
       newTarget.render(children)
     );
+
+    return newTarget.heavyRenderer;
   };
 
   return newTarget;
