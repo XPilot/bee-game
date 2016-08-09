@@ -1,7 +1,7 @@
-# bee-game
+# Bee Attack
 Just another bug in your life...
 
-This is the bee game. It's not about what it could bee, it's about what it wasp-erfected over time :)
+This is the bee game. It's not about what it could bee, it's about what it wasp-erfected over time 😊
 
 
 
