@@ -29,7 +29,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%)
+    scale(0.75);
+  transform-origin: 50% 50%;
 
   width: 100%;
   height: 93.220%;
@@ -38,14 +41,24 @@
   background-size: 100%;
   background-position: 0px 0px;
 
-  @include animation('bee-flying 0.8s step-start infinite')
+  @include animation('bee-flying 0.8s step-start infinite');
+
+  &--queen {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
 }
 
 .Wasp {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%)
+    scale(0.75);
+  transform-origin: 50% 50%;
+
 
   width: 100%;
   height: 93.220%;
@@ -54,5 +67,11 @@
   background-size: 100%;
   background-position: 0px 0px;
 
-  @include animation('wasp-flying 0.8s step-start infinite')
+  @include animation('wasp-flying 0.8s step-start infinite');
+
+  &--queen {
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
 }
