@@ -1,10 +1,6 @@
 import heavy from 'app/decorators/heavy';
-import { constant, times } from 'lodash';
 import { grid } from 'app/constants/constants';
 import { h } from 'maquette';
-
-// events
-import EV from 'events/domEvents';
 
 import GamepadCell from './gamepad-cell';
 
@@ -32,39 +28,51 @@ class GamePad {
   }
 
   generateGrid() {
-    return times(grid.rows, constant(
-      times(grid.columns, constant(GamepadCell.h()))
-    ));
+    const matrix = [];
+    const styles = this.styles;
+
+    for (let i = 0; i < grid.rows; i++) {
+      matrix[i] = [];
+      for (let j = 0; j < grid.columns; j++) {
+        matrix[i][j] = GamepadCell.h({styles, key: `row-${i}|col-${j}` });
+      }
+    }
+    return matrix;
   }
 
   setBees(bees) {
     const styles = this.styles;
 
-    return bees.map(elem => {
-      return h('div.creature', { styles }, elem);
+    return bees.map((elem, indx) => {
+      return h('div.creature', { styles, key: `CreatureBee-${indx}` }, elem);
     });
   }
 
   setWasps(wasps) {
     const styles = this.styles;
 
-    return wasps.map(elem => {
-      return h('div.creature', { styles }, elem);
+    return wasps.map((elem, indx) => {
+      return h('div.creature', { styles, key: `CreatureBee-${indx}` }, elem);
     });
+  }
+
+  getCoordonates(elem) {
+    return {
+      left: typeof (elem.offsetLeft) !== 'undefined' ? `${elem.offsetLeft}px` : 'auto',
+      right: typeof (elem.offsetRight) !== 'undefined' ? `${elem.offsetRight}px` : 'auto',
+      top: typeof (elem.offsetTop) !== 'undefined' ? `${elem.offsetTop}px` : 'auto',
+      bottom: typeof (elem.offsetBottom) !== 'undefined' ? `${elem.offsetBottom}px` : 'auto'
+    };
   }
 
   onCreate() {
     const rows = grid.rows;
     const columns = grid.columns;
 
-    const beeRows = Math.ceil(this.beeChildren.length / columns);
-    const waspRows = Math.ceil(this.waspChildren.length / columns);
-
-    let beeGridRow = rows - 1;
-    let beeGridColumn = columns - 1;
-    let indexModifier = 0;
-
     this.waspChildren = this.waspChildren.map((elem, indx) => {
+      const updatedElem = Object.assign({}, elem);
+      const waspDOMNode = updatedElem.domNode;
+
       let waspRefCell = null;
       let waspGridRow = Math.floor(indx / columns);
       let waspColumn = indx % columns;
@@ -73,64 +81,42 @@ class GamePad {
         waspRefCell = this.matrix[waspGridRow][waspColumn];
       }
 
-      console.log(waspRefCell);
+      const { left, right, top, bottom } = this.getCoordonates(waspRefCell.domNode);
 
-      return elem;
+      waspDOMNode.style.left = left;
+      waspDOMNode.style.right = right;
+      waspDOMNode.style.top = top;
+      waspDOMNode.style.bottom = bottom;
+
+      updatedElem.properties.reference = waspRefCell;
+
+      return updatedElem;
     });
 
-    // this.beeChildren = this.beeChildren.map((elem, indx) => {
-    //   let domCell = null;
-    //   let beeColumn = (beeGridColumn + indexModifier) - indx;
-    //
-    //   if ((beeColumn >= 0) && (this.matrix[beeGridRow][beeColumn])) {
-    //     domCell = this.matrix[beeGridRow][beeColumn].domNode;
-    //   } else {
-    //     beeGridRow = beeGridRow--;
-    //     beeGridColumn = columns - 1;
-    //     indexModifier += columns;
-    //     beeColumn = (beeGridColumn + indexModifier) - indx;
-    //
-    //     domCell = this.matrix[beeGridRow][beeColumn].domNode;
-    //   }
-    //
-    //   domCell.style.background = 'red';
-    //   console.log(domCell.offsetLeft);
-    //   /*
-    //   console.log(domCell.offsetParent.clientWidth, domCell.offsetParent.clientHeight);
-    //   console.log(domCell.clientWidth, domCell.clientHeight);
-    //   console.log(domCell.offsetLeft);
-    //
-    //   /*
-    //   const positionOffset = {
-    //     left: domCell.offsetLeft,
-    //     right: domCell.offsetRight,
-    //     top: domCell.offsetTop,
-    //     bottom: domCell.offsetBottom
-    //   };
-    //   */
-    //
-    //   // remap bee props
-    //   const updatedElem = Object.assign({}, elem, {
-    //     properties: {
-    //       styles: {
-    //         left: '20px'
-    //       },
-    //       key: `${beeGridRow}-${beeColumn}`
-    //     }
-    //   });
-    //
-    //   // console.log(positionOffset);
-    //
-    //   const domNode = elem.domNode;
-    //   /*
-    //   domNode.style.left = positionOffset.left ? positionOffset.left + 'px' : 'auto';
-    //   domNode.style.right = positionOffset.right ? positionOffset.right + 'px' : 'auto';
-    //   domNode.style.top = positionOffset.top ? positionOffset.top + 'px' : 'auto';
-    //   domNode.style.bottom = positionOffset.bottom ? positionOffset.bottom + 'px' : 'auto';
-    //   */
-    //
-    //   return updatedElem;
-    // });
+    this.beeChildren = this.beeChildren.map((elem, indx) => {
+      const updatedElem = Object.assign({}, elem);
+      const beeDOMNode = elem.domNode;
+
+      let beeRefCell = null;
+      let beeGridRow = (rows - 1) - Math.floor(indx / columns);
+      let beeColumn = (columns - 1) - (indx % columns);
+
+      if (this.matrix[beeGridRow][beeColumn]) {
+        beeRefCell = this.matrix[beeGridRow][beeColumn];
+      }
+
+      const { left, right, top, bottom } = this.getCoordonates(beeRefCell.domNode);
+
+      beeDOMNode.style.left = left;
+      beeDOMNode.style.right = right;
+      beeDOMNode.style.top = top;
+      beeDOMNode.style.bottom = bottom;
+
+      updatedElem.properties.reference = beeRefCell;
+      console.log(beeRefCell);
+
+      return updatedElem;
+    });
   }
 
   render(children) {

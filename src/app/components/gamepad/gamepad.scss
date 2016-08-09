@@ -26,30 +26,29 @@
 
 .GamePadCell {
   position: relative;
+  z-index: 9;
 
   display: block;
-  width: 120px;
-  height: 120px;
 
   margin: 0;
   padding: 0;
 
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
 
-  background: blue;
   @include font-line-size(0, 0);
 
-  &:nth-child(5n){
-    border-right: none;
-  }
+  cursor: pointer;
 
-  &:nth-last-child(-n+5){
-    border-bottom: none;
+  &:hover {
+    background: #F9BF3B;
+    opacity: 0.3;
   }
 }
 
 .creature {
   position: absolute;
   z-index: 3;
+
+  pointer-events: none;
 }
