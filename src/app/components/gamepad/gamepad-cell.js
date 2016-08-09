@@ -9,12 +9,18 @@ class GamepadCell {
     this.displayName = 'GamepadCell';
     this.type = 'a';
     this.classNames = ['GamePadCell'];
+    this.onClick = this.onClick.bind(this);
+
+    this.hasWasp = false;
+    this.hasBee = false;
+
+    this.binder = {};
   }
 
   onClick(ev) {
-    const elem = ev.target;
-
-    console.log(elem.offsetTop, elem.offsetLeft);
+    console.log('aici', this.binder);
+    this.binder.classes = {'Porn': true};
+    console.log('aici 2', this.binder);
   }
 
   render() {
