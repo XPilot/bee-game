@@ -11,16 +11,22 @@ class GamepadCell {
     this.classNames = ['GamePadCell'];
     this.onClick = this.onClick.bind(this);
 
-    this.hasWasp = false;
-    this.hasBee = false;
+    this.__prop__hasCreature = {
+      creatureId: null,
+      bee: false,
+      wasp: false,
+    };
 
-    this.binder = {};
+    this.__func__updateCreature = this.updateCreature.bind(this);
   }
 
+  // events
   onClick(ev) {
-    console.log('aici', this.binder);
-    this.binder.classes = {'Porn': true};
-    console.log('aici 2', this.binder);
+  }
+
+  // update creature
+  updateCreature(creature) {
+
   }
 
   render() {

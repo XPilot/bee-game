@@ -34,7 +34,7 @@ class GamePad {
     for (let i = 0; i < grid.rows; i++) {
       matrix[i] = [];
       for (let j = 0; j < grid.columns; j++) {
-        matrix[i][j] = GamepadCell.h({styles, key: `row-${i}|col-${j}` });
+        matrix[i][j] = GamepadCell.h({ styles, key: `row-${i}|col-${j}` });
       }
     }
     return matrix;

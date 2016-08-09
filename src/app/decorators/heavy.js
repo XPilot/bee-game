@@ -36,8 +36,13 @@ function heavy(Target) {
 
   // extra ref heads
   Object.keys(newTarget).map(item => {
-    // typeof (item) === 'object'
-    // to be continues
+    if ((typeof (newTarget[item]) === 'object') && (item.match(/__prop__/gi))) {
+      const objectName = item.replace(/__prop__/gi, '');
+      props[objectName] = newTarget[item];
+    } else if ((typeof (newTarget[item]) === 'function') && (item.match(/__func__/gi))) {
+      const funcName = item.replace(/__func__/gi, '');
+      props[funcName] = newTarget[item];
+    }
     return item;
   });
 
