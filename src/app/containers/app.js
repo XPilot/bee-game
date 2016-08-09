@@ -23,9 +23,9 @@ class App {
     let colony = [];
 
     for (let i = 0; i < nrBees; i++) {
-      colony[i] = Bee.h({ classes: { Bee: true }, category: 'bee' });
-      if (i === Math.round(nrBees / 2)) {
-        colony[i] = Bee.h({ classes: {Bee: true, 'Bee--queen': true}, category: 'bee-queen' });
+      colony[i] = Bee.h({ classes: { Bee: true }, category: 'bee', key: `Bee-${i}` });
+      if (i === Math.floor(nrBees / 2)) {
+        colony[i] = Bee.h({ classes: {Bee: true, 'Bee--queen': true}, category: 'bee-queen', key: `Bee-Queen-${i}` });
       }
     }
     return colony;
@@ -35,9 +35,9 @@ class App {
     let colony = [];
 
     for (let i = 0; i < nrWasps; i++) {
-      colony[i] = Bee.h({ classes: { Wasp: true }, category: 'wasp' });
-      if (i === Math.round(nrWasps / 2)) {
-        colony[i] = Bee.h({ classes: { Wasp: true, 'Wasp--queen': true }, category: 'wasp-queen' });
+      colony[i] = Bee.h({ classes: { Wasp: true }, category: 'wasp', key: `Wasp-${i}` });
+      if (i === Math.floor(nrWasps / 2)) {
+        colony[i] = Bee.h({ classes: { Wasp: true, 'Wasp--queen': true }, category: 'wasp-queen', key: `Wasp-Queen-${i}` });
       }
     }
     return colony;
